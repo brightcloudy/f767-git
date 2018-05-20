@@ -1,0 +1,6 @@
+.sw[a-p]
+.*.sw[a-p]
+__pycache__/
+*.py[cod]
+*$py.class
+BUILD/
