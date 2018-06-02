@@ -2,29 +2,23 @@
 
 Serial pc(SERIAL_TX, SERIAL_RX);
 
-DigitalOut fake_switch(D7);
 BusOut rgbleds(LED1, LED2, LED3);
-Ticker pulseblock;
-
-void five_press() {
-  int i = 0;
-  for (i = 0; i < 5; i++) {
-    fake_switch = 0;
-    wait_ms(100);
-    fake_switch = 1;
-    wait_ms(100);
-  }
-}
+PwmOut pwmout(D9);
 
 int main() {
-  fake_switch = 1; // active low switch
-  pulseblock.attach(&five_press, 2.0);
 
+  pwmout.period_us(50);
+  uint32_t i;
   while(1) {
-    int i = 0;
-    for (i = 0; i < 8;i++) {
-      rgbleds = i;
-      wait(5.0);
+    //pc.printf("%02d\n", slope);
+    rgbleds = rgbleds + 1;
+    for (i = 0;i < 100;i++) {
+      pwmout = i/100.0f;
+      wait_us(10);
+    }
+    for (i = 100;i > 0;i--) {
+      pwmout = i/100.0f;
+      wait_us(10);
     }
   }
 }
