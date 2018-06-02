@@ -57,7 +57,7 @@
     * Mount MBED block device and copy .bin to root of drive
     * Load in gdb
 ## debug
-  openocd or st-util work equally well, but there's some small differences i think
+  - openocd or st-util work equally well, but there's some small differences i think
   ### openocd
     - Using the board script for the STM32F7 Discovery board seems to work fine.
     - `openocd -f /usr/share/openocd/scripts/board/stm32f7discovery.cfg -c init -c "reset init"`
